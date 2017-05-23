@@ -68,9 +68,9 @@ public class UsersView extends javax.swing.JFrame {
 
         usersLink.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
         usersLink.setForeground(new java.awt.Color(255, 0, 0));
-        usersLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Sem-Título-2.jpg"))); // NOI18N
+        usersLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/USUARIO.png"))); // NOI18N
         usersLink.setText("USUÁRIOS");
-        usersLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        usersLink.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         usersLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usersLinkMouseClicked(evt);
@@ -78,14 +78,14 @@ public class UsersView extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/RELATORIO.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/RELATORIO.png"))); // NOI18N
         jLabel2.setText("RELATÓRIOS");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ESTOQUE.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ESTOQUE.png"))); // NOI18N
         jLabel3.setText("ESTOQUE");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -93,9 +93,9 @@ public class UsersView extends javax.swing.JFrame {
         });
 
         soldsLink.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        soldsLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/VENDAS.jpg"))); // NOI18N
+        soldsLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/VENDAS.png"))); // NOI18N
         soldsLink.setText("VENDAS");
-        soldsLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        soldsLink.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         soldsLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 soldsLinkMouseClicked(evt);
@@ -103,9 +103,9 @@ public class UsersView extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SUPORTE.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SUPORTE.png"))); // NOI18N
         jLabel5.setText("SUPORTE");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 

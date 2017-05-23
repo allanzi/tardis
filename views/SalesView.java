@@ -67,9 +67,9 @@ public class SalesView extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(630, 415));
 
         usersLink.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        usersLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Sem-Título-2.jpg"))); // NOI18N
+        usersLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/USUARIO.png"))); // NOI18N
         usersLink.setText("USUÁRIOS");
-        usersLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        usersLink.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         usersLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usersLinkMouseClicked(evt);
@@ -77,14 +77,14 @@ public class SalesView extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/RELATORIO.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/RELATORIO.png"))); // NOI18N
         jLabel2.setText("RELATÓRIOS");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ESTOQUE.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ESTOQUE.png"))); // NOI18N
         jLabel3.setText("ESTOQUE");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -93,9 +93,9 @@ public class SalesView extends javax.swing.JFrame {
 
         soldsLink.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
         soldsLink.setForeground(new java.awt.Color(255, 0, 0));
-        soldsLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/VENDAS.jpg"))); // NOI18N
+        soldsLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/VENDAS.png"))); // NOI18N
         soldsLink.setText("VENDAS");
-        soldsLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        soldsLink.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         soldsLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 soldsLinkMouseClicked(evt);
@@ -103,9 +103,9 @@ public class SalesView extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 11)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SUPORTE.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SUPORTE.png"))); // NOI18N
         jLabel5.setText("SUPORTE");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -143,17 +143,22 @@ public class SalesView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(usersLink)
-                    .addComponent(soldsLink)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(soldsLink)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(usersLink)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE)))

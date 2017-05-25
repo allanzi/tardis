@@ -28,7 +28,7 @@ public class UserMock {
         }
     }
     
-    public static void insert(User user) throws Exception {
+    public static void insert(User user) {
         user.setId(totalUsers++);
         usersList.add(user);
     }

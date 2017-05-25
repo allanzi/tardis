@@ -5,6 +5,7 @@
  */
 package views;
 
+import views.users.UsersView;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;

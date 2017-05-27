@@ -21,24 +21,24 @@ public class UserMock {
     private static List<User> usersList = new ArrayList<User>();
     private static Integer totalUsers = 0;
 
-    public UserMock(){
+    public UserMock() {
         try {
             seedUser();
         } catch (Exception e) {
         }
     }
-    
+
     public static void insert(User user) {
         user.setId(totalUsers++);
         usersList.add(user);
     }
-    
+
     private void seedUser() throws NoSuchAlgorithmException, UnsupportedEncodingException, UnsupportedEncodingException, UnsupportedEncodingException, UnsupportedEncodingException, Exception {
         User user = new User();
         user.setName("Allan Santos");
         user.setEmail("allanzi@hotmail.com");
         user.setBirth_date(new Date(1996, 06, 17));
-        user.setPhone("11 9 58026276");
+        user.setPhone("(11) 9 5802-6276");
         user.setCpf("424.768.828-60");
         user.setRg("38.142.498-4");
         user.setPassword("123456");
@@ -75,7 +75,7 @@ public class UserMock {
 
     public static List<User> get() {
         try {
-            
+
         } catch (Exception e) {
         }
         return usersList;
@@ -106,7 +106,7 @@ public class UserMock {
 
     private static boolean hasFound(User userList, String value) {
         return userList != null && userList.getBirth_date() != null
-                && userList.getCpf() != null 
+                && userList.getCpf() != null
                 && (userList.getName() == null ? value == null : userList.getName().equals(value)) || (userList.getEmail() == null ? value == null : userList.getEmail().equals(value));
     }
 

@@ -6,12 +6,12 @@
 package Services;
 
 import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import java.util.List;
+import javax.naming.directory.AttributeModificationException;
 import javax.swing.JOptionPane;
 import mocks.UserMock;
 import models.User;
+import validators.UsersValidator;
 
 /**
  *
@@ -19,8 +19,9 @@ import models.User;
  */
 public class UserService {
 
-    public UserMock userMock = new UserMock();
+    public UserMock mock = new UserMock();
     public User user = new User();
+    public UsersValidator validator = new UsersValidator();
 
     public boolean login(String email, String password) throws UnsupportedEncodingException, Exception {
         if (UserMock.search(email).size() > 0) {
@@ -45,5 +46,15 @@ public class UserService {
         }
 
         return new User();
+    }
+    
+    public void create (User user) throws AttributeModificationException
+    {
+        validator.validate(user);
+        mock.insert(user);
+        List<User> users = mock.get();
+        for (User user1 : users) {
+            System.out.println(user1.getName());
+        }
     }
 }

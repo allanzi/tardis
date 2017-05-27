@@ -9,7 +9,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import mocks.UserMock;
 import models.User;
 import views.ProductsViews;
@@ -27,9 +29,9 @@ public class UsersView extends javax.swing.JFrame {
     public UsersView() {
         initComponents();
     }
-    
+
     private static UserMock UserMock = new UserMock();
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,6 +148,11 @@ public class UsersView extends javax.swing.JFrame {
                 addUserButtonMouseClicked(evt);
             }
         });
+        addUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -216,7 +223,12 @@ public class UsersView extends javax.swing.JFrame {
     private void addUserButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUserButtonMouseClicked
         UsersAdd view = new UsersAdd();
         view.run();
+        this.dispose();
     }//GEN-LAST:event_addUserButtonMouseClicked
+
+    private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addUserButtonActionPerformed
 
     /**
      * @param args the command line arguments

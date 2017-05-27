@@ -5,6 +5,7 @@
  */
 package validators;
 
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.naming.directory.AttributeModificationException;
@@ -24,9 +25,25 @@ public class UsersValidator {
         if (!isValidEmail(user.getEmail())) {
             throw new AttributeModificationException("Email inválido");
         }
-
-        if (user.getCpf().length() == 11) {
+        
+        if (user.getCpf().length() != 14) {
             throw new AttributeModificationException("CPF inválido");
+        }
+        
+        if (user.getRg().length() != 12) {
+            throw new AttributeModificationException("CPF inválido");
+        }
+        
+        if (!(user.getBirth_date() instanceof Date)) {
+            throw new AttributeModificationException("Data de Nascimento inválido");
+        }
+        
+        if (user.getPhone().length() != 16) {
+            throw new AttributeModificationException("Número de telefone inválido");
+        }
+        
+        if (user.getPassword().length() < 6) {
+            throw new AttributeModificationException("Senha deve ter pelo menos 6 digitos");
         }
     }
 

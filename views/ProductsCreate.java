@@ -5,27 +5,28 @@
  */
 package views;
 
-import Services.UserService;
+import Services.ProductService;
+import Services.ProductService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.naming.directory.AttributeModificationException;
 import javax.swing.JOptionPane;
-import models.User;
+import models.Product;
 
 /**
  *
  * @author FelipeVasconcelos
  */
-public class UsersCreate extends javax.swing.JFrame {
+public class ProductsCreate extends javax.swing.JFrame {
     
-    private UserService service = new UserService();
-    private UsersIndex view = new UsersIndex();
-    private User user = new User();
+    private ProductService service = new ProductService();
+    private ProductsIndex view = new ProductsIndex();
+    private Product product = new Product();
     private Boolean isUpdate;
     
-    public UsersCreate(User user, Boolean isUpdate) {
+    public ProductsCreate(Product product, Boolean isUpdate) {
         this.isUpdate = isUpdate;
-        this.user = user;
+        this.product = product;
         initComponents();
     }
 
@@ -38,33 +39,27 @@ public class UsersCreate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         nameInput = new javax.swing.JTextField();
-        passwordInput = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        cpfInput = new javax.swing.JTextField();
+        priceInput = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        birthDateInput = new javax.swing.JTextField();
+        producerInput = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        rgInput = new javax.swing.JFormattedTextField();
-        phoneInput = new javax.swing.JFormattedTextField();
-        emailInput = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        amountInput = new javax.swing.JFormattedTextField();
+        platformInput = new javax.swing.JFormattedTextField();
+        codeInput = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CADASTRO DE USUÁRIO");
 
-        jLabel6.setText("Senha - Mínimo 6 digitos");
-
         jLabel1.setText("Nome");
 
         nameInput.setText(user.getName());
-
-        passwordInput.setText(user.getPassword());
 
         saveButton.setText("Salvar");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -80,31 +75,31 @@ public class UsersCreate extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("CPF - Formato (xxx.xxx.xxx-xx)");
+        jLabel2.setText("Preço");
 
-        cpfInput.setText(user.getCpf());
+        priceInput.setText(user.getCpf());
 
-        jLabel3.setText("RG - Formato (xx.xxx.xxx-x)");
+        jLabel3.setText("Quantidade");
 
-        jLabel4.setText("Data de Nascimento - Formato (xx/xx/xxxx)");
+        jLabel4.setText("Produtor");
 
         try {
-            birthDateInput.setText(new SimpleDateFormat("dd/MM/YYYY").format(user.getBirth_date()));
+            producerInput.setText(new SimpleDateFormat("dd/MM/YYYY").format(user.getBirth_date()));
         } catch(NullPointerException e){
 
         }
 
-        jLabel5.setText("Telefone - Formato ((xx) x-xxxx-xxxx)");
+        jLabel5.setText("Plataforma");
 
-        rgInput.setText(user.getRg());
-        rgInput.setToolTipText("");
+        amountInput.setText(user.getRg());
+        amountInput.setToolTipText("");
 
-        phoneInput.setText(user.getPhone());
-        phoneInput.setToolTipText("");
+        platformInput.setText(user.getPhone());
+        platformInput.setToolTipText("");
 
-        emailInput.setText(user.getEmail());
+        nameInput.setText(user.getName());
 
-        jLabel8.setText("E-mail");
+        jLabel7.setText("Codigo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,34 +108,32 @@ public class UsersCreate extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cpfInput)
-                                .addComponent(birthDateInput))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addComponent(phoneInput)
-                                .addComponent(rgInput))
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(passwordInput))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel8))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(emailInput, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nameInput))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                    .addComponent(producerInput)
+                                    .addComponent(priceInput))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3))
+                                    .addComponent(amountInput, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                    .addComponent(platformInput)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(nameInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                                .addComponent(codeInput, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,35 +142,31 @@ public class UsersCreate extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(codeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cpfInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rgInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(priceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amountInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(birthDateInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(producerInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(platformInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(cancelButton))
-                .addGap(23, 23, 23))
+                .addContainerGap())
         );
 
         pack();
@@ -186,20 +175,20 @@ public class UsersCreate extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
       
         try {
-            User user = new User();
-            user.setName(nameInput.getText());
-            user.setEmail(emailInput.getText());
-            user.setCpf(cpfInput.getText());
-            user.setRg(rgInput.getText());
-            setBirthDate(user);
-            user.setPhone(phoneInput.getText());
-            user.setPassword(passwordInput.getText());
+            Product product = new Product();
+            product.setName(nameInput.getText());
+            product.setEmail(emailInput.getText());
+            product.setCpf(priceInput.getText());
+            product.setRg(amountInput.getText());
+            setBirthDate(product);
+            product.setPhone(platformInput.getText());
+            product.setPassword(passwordInput.getText());
             
             if (this.isUpdate) {
-                user.setId(this.user.getId());
-                service.update(user);
+                product.setId(this.product.getId());
+                service.update(product);
             }else {
-                service.create(user);
+                service.create(product);
             }
             
             this.dispose();
@@ -208,18 +197,6 @@ public class UsersCreate extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void setBirthDate(User user) throws NumberFormatException, AttributeModificationException {
-        if (birthDateInput.getText().length() != 10) {
-            throw new AttributeModificationException("Data de Nascimento inválido");    
-        }
-    
-        int day = Integer.parseInt(birthDateInput.getText().substring(0, 2));
-        int month = Integer.parseInt(birthDateInput.getText().substring(3, 5));
-        int year = Integer.parseInt(birthDateInput.getText().substring(6, 10));
-        
-        user.setBirth_date(new Date(year, month, day));
-    }
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
@@ -243,14 +220,18 @@ public class UsersCreate extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UsersCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductsCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UsersCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductsCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UsersCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductsCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UsersCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductsCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -259,8 +240,8 @@ public class UsersCreate extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                User user = new User();
-                UsersCreate view = new UsersCreate(user, false);
+                Product product = new Product();
+                ProductsCreate view = new ProductsCreate(product, false);
                 view.setDefaultCloseOperation(view.DISPOSE_ON_CLOSE);
                 view.setVisible(true);
             }
@@ -271,7 +252,7 @@ public class UsersCreate extends javax.swing.JFrame {
     {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UsersCreate view = new UsersCreate(user, isUpdate);
+                ProductsCreate view = new ProductsCreate(product, isUpdate);
                 view.setDefaultCloseOperation(view.DISPOSE_ON_CLOSE);
                 view.setVisible(true);
             }
@@ -279,21 +260,19 @@ public class UsersCreate extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField birthDateInput;
+    private javax.swing.JFormattedTextField amountInput;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JTextField cpfInput;
-    private javax.swing.JTextField emailInput;
+    private javax.swing.JTextField codeInput;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField nameInput;
-    private javax.swing.JTextField passwordInput;
-    private javax.swing.JFormattedTextField phoneInput;
-    private javax.swing.JFormattedTextField rgInput;
+    private javax.swing.JFormattedTextField platformInput;
+    private javax.swing.JTextField priceInput;
+    private javax.swing.JTextField producerInput;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }

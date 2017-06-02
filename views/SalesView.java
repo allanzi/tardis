@@ -207,7 +207,7 @@ public class SalesView extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         this.dispose();
-        ProductsViews products = new ProductsViews();
+        ProductsIndex products = new ProductsIndex();
         products.run();
     }//GEN-LAST:event_jLabel3MouseClicked
 

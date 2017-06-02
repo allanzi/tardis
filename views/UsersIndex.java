@@ -15,7 +15,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import mocks.UserMock;
 import models.User;
-import views.SalesView;
 
 /**
  *
@@ -238,7 +237,7 @@ public class UsersIndex extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         this.dispose();
-        ProductsViews products = new ProductsViews();
+        ProductsIndex products = new ProductsIndex();
         products.run();
     }//GEN-LAST:event_jLabel3MouseClicked
 

@@ -221,7 +221,7 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="Object[][] o = new Object[ProductsMock.get().size()][ProductsMock.get().size()*7];&#xa;int count = 0;&#xa;int column = 0;&#xa;&#xa;for (Product product : ProductsMock.get()) {&#xa;    o[column][count++] = product.getId();&#xa;    o[column][count++] = product.getCode();&#xa;    o[column][count++] = product.getName();&#xa;    o[column][count++] = product.getPrice();&#xa;    o[column][count++] = product.getProducer();&#xa;    o[column][count++] = product.getPlatform();&#xa;    o[column][count++] = product.getAmount();&#xa;    column++;&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="Object[][] o = new Object[ProductsMock.get().size()][ProductsMock.get().size()*7];&#xa;int column = 0;&#xa;int line = 0;&#xa;&#xa;for (Product product : ProductsMock.get()) {&#xa;    o[line][column++] = product.getId();&#xa;    o[line][column++] = product.getCode();&#xa;    o[line][column++] = product.getName();&#xa;    o[line][column++] = product.getPrice();&#xa;    o[line][column++] = product.getProducer();&#xa;    o[line][column++] = product.getPlatform();&#xa;    o[line][column++] = product.getAmount();&#xa;    line++;&#xa;    column = 0;&#xa;}"/>
               </AuxValues>
             </Component>
           </SubComponents>

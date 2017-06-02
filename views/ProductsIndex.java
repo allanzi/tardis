@@ -11,18 +11,17 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import mocks.ProductsMock;
 import models.Product;
-import views.SalesView;
 
 /**
  *
  * @author FelipeVasconcelos
  */
-public class ProductsViews extends javax.swing.JFrame {
+public class ProductsIndex extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaInicio
      */
-    public ProductsViews() {
+    public ProductsIndex() {
         initComponents();
     }
     
@@ -111,18 +110,19 @@ public class ProductsViews extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         Object[][] o = new Object[ProductsMock.get().size()][ProductsMock.get().size()*7];
-        int count = 0;
         int column = 0;
+        int line = 0;
 
         for (Product product : ProductsMock.get()) {
-            o[column][count++] = product.getId();
-            o[column][count++] = product.getCode();
-            o[column][count++] = product.getName();
-            o[column][count++] = product.getPrice();
-            o[column][count++] = product.getProducer();
-            o[column][count++] = product.getPlatform();
-            o[column][count++] = product.getAmount();
-            column++;
+            o[line][column++] = product.getId();
+            o[line][column++] = product.getCode();
+            o[line][column++] = product.getName();
+            o[line][column++] = product.getPrice();
+            o[line][column++] = product.getProducer();
+            o[line][column++] = product.getPlatform();
+            o[line][column++] = product.getAmount();
+            line++;
+            column = 0;
         }
         saleTable.setModel(new javax.swing.table.DefaultTableModel(
             o,
@@ -197,7 +197,7 @@ public class ProductsViews extends javax.swing.JFrame {
 
     private void usersLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersLinkMouseClicked
         this.dispose();
-        ProductsViews users = new ProductsViews();
+        ProductsIndex users = new ProductsIndex();
         users.run();
     }//GEN-LAST:event_usersLinkMouseClicked
 
@@ -209,7 +209,7 @@ public class ProductsViews extends javax.swing.JFrame {
 
     private void productsLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productsLinkMouseClicked
         this.dispose();
-        ProductsViews products = new ProductsViews();
+        ProductsIndex products = new ProductsIndex();
         products.run();
     }//GEN-LAST:event_productsLinkMouseClicked
 
@@ -235,19 +235,21 @@ public class ProductsViews extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProductsViews.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductsIndex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProductsViews.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductsIndex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProductsViews.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductsIndex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProductsViews.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductsIndex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProductsViews().setVisible(true);
+                ProductsIndex view = new ProductsIndex();
+                view.setDefaultCloseOperation(UsersIndex.DISPOSE_ON_CLOSE);
+                view.setVisible(true);
             }
         });
     }
@@ -255,7 +257,9 @@ public class ProductsViews extends javax.swing.JFrame {
     public void run() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProductsViews().setVisible(true);
+                ProductsIndex view = new ProductsIndex();
+                view.setDefaultCloseOperation(UsersIndex.DISPOSE_ON_CLOSE);
+                view.setVisible(true);
             }
         });
     }

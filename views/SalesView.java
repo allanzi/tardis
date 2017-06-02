@@ -5,7 +5,8 @@
  */
 package views;
 
-import views.users.UsersView;
+import views.products.ProductsViews;
+import views.users.UsersIndex;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -196,7 +197,7 @@ public class SalesView extends javax.swing.JFrame {
 
     private void usersLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersLinkMouseClicked
         this.dispose();
-        UsersView users = new UsersView();
+        UsersIndex users = new UsersIndex();
         users.run();
     }//GEN-LAST:event_usersLinkMouseClicked
 

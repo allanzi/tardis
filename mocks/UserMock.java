@@ -23,13 +23,14 @@ public class UserMock {
 
     public UserMock() {
         try {
-            seedUser();
+//            seedUser();
         } catch (Exception e) {
         }
     }
 
     public static void insert(User user) {
-        user.setId(totalUsers++);
+        totalUsers++;
+        user.setId(totalUsers);
         usersList.add(user);
     }
 
@@ -37,7 +38,7 @@ public class UserMock {
         User user = new User();
         user.setName("Allan Santos");
         user.setEmail("allanzi@hotmail.com");
-        user.setBirth_date(new Date(1996, 06, 17));
+        user.setBirth_date(new Date());
         user.setPhone("(11) 9 5802-6276");
         user.setCpf("424.768.828-60");
         user.setRg("38.142.498-4");

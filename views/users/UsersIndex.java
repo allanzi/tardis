@@ -5,28 +5,28 @@
  */
 package views.users;
 
+import views.products.ProductsViews;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 import mocks.UserMock;
 import models.User;
-import views.ProductsViews;
 import views.SalesView;
 
 /**
  *
  * @author FelipeVasconcelos
  */
-public class UsersView extends javax.swing.JFrame {
+public class UsersIndex extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaInicio
      */
-    public UsersView() {
+    public UsersIndex() {
         initComponents();
     }
 
@@ -64,8 +64,10 @@ public class UsersView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        saleTable = new javax.swing.JTable();
+        usersTable = new javax.swing.JTable();
         addUserButton = new javax.swing.JButton();
+        editUserButton = new javax.swing.JButton();
+        removerUserButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INÍCIO");
@@ -115,96 +117,116 @@ public class UsersView extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         Object[][] o = new Object[UserMock.get().size()][UserMock.get().size()*7];
-        int count = 0;
         int column = 0;
+        int line = 0;
 
         for (User user : UserMock.get()) {
-            o[column][count++] = user.getId();
-            o[column][count++] = user.getName();
-            o[column][count++] = user.getEmail();
-            o[column][count++] = user.getCpf();
-            o[column][count++] = user.getRg();
-            o[column][count++] = user.getBirth_date().toString();
-            o[column][count++] = user.getPhone();
-            column++;
+            o[line][column++] = user.getId();
+            o[line][column++] = user.getName();
+            o[line][column++] = user.getEmail();
+            o[line][column++] = user.getCpf();
+            o[line][column++] = user.getRg();
+            o[line][column++] = user.getBirth_date().toString();
+            o[line][column++] = user.getPhone();
+            line++;
+            column = 0;
         }
-        saleTable.setModel(new javax.swing.table.DefaultTableModel(
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
             o,
             new String [] {
                 "ID", "Nome", "Email", "CPF", "RG", "Data de nascimento", "Telefone"
             }
-        ));
-        jScrollPane1.setViewportView(saleTable);
-        if (saleTable.getColumnModel().getColumnCount() > 0) {
-            saleTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
-            saleTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
-            saleTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
-            saleTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+        )
+        {public boolean isCellEditable(int row, int column){return false;}}
+    );
+    jScrollPane1.setViewportView(usersTable);
+    if (usersTable.getColumnModel().getColumnCount() > 0) {
+        usersTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+        usersTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        usersTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+        usersTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+    }
+
+    addUserButton.setText("Adicionar usuário");
+    addUserButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            addUserButtonMouseClicked(evt);
         }
+    });
 
-        addUserButton.setText("Adicionar usuário");
-        addUserButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addUserButtonMouseClicked(evt);
-            }
-        });
-        addUserButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addUserButtonActionPerformed(evt);
-            }
-        });
+    editUserButton.setText("Editar usuário");
+    editUserButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            editUserButtonMouseClicked(evt);
+        }
+    });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(usersLink)
-                    .addComponent(soldsLink)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(addUserButton)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(usersLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(soldsLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(57, 57, 57))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(addUserButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+    removerUserButton.setText("Remover usuario");
+    removerUserButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            removerUserButtonMouseClicked(evt);
+        }
+    });
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGap(12, 12, 12)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2)
+                .addComponent(usersLink)
+                .addComponent(soldsLink)
+                .addComponent(jLabel3)
+                .addComponent(jLabel5))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(editUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(removerUserButton)
+            .addGap(43, 43, 43)
+            .addComponent(addUserButton)
+            .addContainerGap())
+        .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGap(147, 147, 147)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+            .addGap(12, 12, 12))
+    );
+    jPanel2Layout.setVerticalGroup(
+        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jSeparator1)
+        .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addComponent(usersLink, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
+                    .addComponent(soldsLink, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addGap(57, 57, 57))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(editUserButton)
+                        .addComponent(removerUserButton)
+                        .addComponent(addUserButton))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+    );
 
-        pack();
+    getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void usersLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersLinkMouseClicked
         this.dispose();
-        UsersView users = new UsersView();
+        UsersIndex users = new UsersIndex();
         users.run();
     }//GEN-LAST:event_usersLinkMouseClicked
 
@@ -221,14 +243,32 @@ public class UsersView extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void addUserButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUserButtonMouseClicked
-        UsersAdd view = new UsersAdd();
+        User user = new User();
+        UsersCreate view = new UsersCreate(user, false);
         view.run();
         this.dispose();
     }//GEN-LAST:event_addUserButtonMouseClicked
 
-    private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
+    private void editUserButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editUserButtonMouseClicked
+        if (usersTable.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para edita-la");
+            return;
+        }
+        
+        try {
+            int id = (int) usersTable.getModel().getValueAt(usersTable.getSelectedRow(), 0);
+            User user = UserMock.find(id);
+            UsersCreate view = new UsersCreate(user, true);
+            view.run();
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(UsersIndex.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editUserButtonMouseClicked
+
+    private void removerUserButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removerUserButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_addUserButtonActionPerformed
+    }//GEN-LAST:event_removerUserButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -236,7 +276,8 @@ public class UsersView extends javax.swing.JFrame {
      */
     public static void main(String args[]) throws Exception {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<editorUser user = new User();
+        
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -248,28 +289,19 @@ public class UsersView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UsersView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsersIndex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UsersView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsersIndex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UsersView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsersIndex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UsersView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsersIndex.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UsersView view = new UsersView();
-                view.setDefaultCloseOperation(UsersView.DISPOSE_ON_CLOSE);
+                UsersIndex view = new UsersIndex();
+                view.setDefaultCloseOperation(UsersIndex.DISPOSE_ON_CLOSE);
                 view.setVisible(true);
             }
         });
@@ -278,23 +310,27 @@ public class UsersView extends javax.swing.JFrame {
     public void run() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UsersView view = new UsersView();
-                view.setDefaultCloseOperation(UsersView.DISPOSE_ON_CLOSE);
+                UsersIndex view = new UsersIndex();
+                view.setDefaultCloseOperation(UsersIndex.DISPOSE_ON_CLOSE);
                 view.setVisible(true);
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserButton;
+    private javax.swing.JButton editUserButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable saleTable;
+    private javax.swing.JButton removerUserButton;
     private javax.swing.JLabel soldsLink;
     private javax.swing.JLabel usersLink;
+    private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
 }

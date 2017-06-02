@@ -6,6 +6,7 @@
 package views.users;
 
 import Services.UserService;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.naming.directory.AttributeModificationException;
 import javax.swing.JOptionPane;
@@ -15,15 +16,16 @@ import models.User;
  *
  * @author FelipeVasconcelos
  */
-public class UsersAdd extends javax.swing.JFrame {
+public class UsersCreate extends javax.swing.JFrame {
     
-    public UserService service = new UserService();
-    public UsersView view = new UsersView();
-
-    /**
-     * Creates new form UsuarioCadastro
-     */
-    public UsersAdd() {
+    private UserService service = new UserService();
+    private UsersIndex view = new UsersIndex();
+    private User user = new User();
+    private Boolean isUpdate;
+    
+    public UsersCreate(User user, Boolean isUpdate) {
+        this.isUpdate = isUpdate;
+        this.user = user;
         initComponents();
     }
 
@@ -40,7 +42,7 @@ public class UsersAdd extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         nameInput = new javax.swing.JTextField();
         passwordInput = new javax.swing.JTextField();
-        createButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cpfInput = new javax.swing.JTextField();
@@ -60,16 +62,14 @@ public class UsersAdd extends javax.swing.JFrame {
 
         jLabel1.setText("Nome");
 
-        nameInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameInputActionPerformed(evt);
-            }
-        });
+        nameInput.setText(user.getName());
 
-        createButton.setText("Cadastrar");
-        createButton.addActionListener(new java.awt.event.ActionListener() {
+        passwordInput.setText(user.getPassword());
+
+        saveButton.setText("Salvar");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonActionPerformed(evt);
+                saveButtonActionPerformed(evt);
             }
         });
 
@@ -82,21 +82,27 @@ public class UsersAdd extends javax.swing.JFrame {
 
         jLabel2.setText("CPF - Formato (xxx.xxx.xxx-xx)");
 
+        cpfInput.setText(user.getCpf());
+
         jLabel3.setText("RG - Formato (xx.xxx.xxx-x)");
 
         jLabel4.setText("Data de Nascimento - Formato (xx/xx/xxxx)");
 
+        try {
+            birthDateInput.setText(new SimpleDateFormat("dd/MM/YYYY").format(user.getBirth_date()));
+        } catch(NullPointerException e){
+
+        }
+
         jLabel5.setText("Telefone - Formato ((xx) x-xxxx-xxxx)");
 
+        rgInput.setText(user.getRg());
         rgInput.setToolTipText("");
 
+        phoneInput.setText(user.getPhone());
         phoneInput.setToolTipText("");
 
-        emailInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailInputActionPerformed(evt);
-            }
-        });
+        emailInput.setText(user.getEmail());
 
         jLabel8.setText("E-mail");
 
@@ -125,7 +131,7 @@ public class UsersAdd extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(passwordInput))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +175,7 @@ public class UsersAdd extends javax.swing.JFrame {
                 .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createButton)
+                    .addComponent(saveButton)
                     .addComponent(cancelButton))
                 .addGap(23, 23, 23))
         );
@@ -177,14 +183,10 @@ public class UsersAdd extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameInputActionPerformed
-
-    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        User user = new User();
-        
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+      
         try {
+            User user = new User();
             user.setName(nameInput.getText());
             user.setEmail(emailInput.getText());
             user.setCpf(cpfInput.getText());
@@ -192,13 +194,20 @@ public class UsersAdd extends javax.swing.JFrame {
             setBirthDate(user);
             user.setPhone(phoneInput.getText());
             user.setPassword(passwordInput.getText());
-            service.create(user);
+            
+            if (this.isUpdate) {
+                user.setId(this.user.getId());
+                service.update(user);
+            }else {
+                service.create(user);
+            }
+            
             this.dispose();
             view.run();
         } catch (AttributeModificationException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_createButtonActionPerformed
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     private void setBirthDate(User user) throws NumberFormatException, AttributeModificationException {
         if (birthDateInput.getText().length() != 10) {
@@ -214,11 +223,8 @@ public class UsersAdd extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
+        view.run();
     }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void emailInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailInputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,21 +243,24 @@ public class UsersAdd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UsersAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsersCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UsersAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsersCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UsersAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsersCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UsersAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsersCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UsersAdd view = new UsersAdd();
+                User user = new User();
+                UsersCreate view = new UsersCreate(user, false);
                 view.setDefaultCloseOperation(view.DISPOSE_ON_CLOSE);
                 view.setVisible(true);
             }
@@ -262,7 +271,7 @@ public class UsersAdd extends javax.swing.JFrame {
     {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UsersAdd view = new UsersAdd();
+                UsersCreate view = new UsersCreate(user, isUpdate);
                 view.setDefaultCloseOperation(view.DISPOSE_ON_CLOSE);
                 view.setVisible(true);
             }
@@ -273,7 +282,6 @@ public class UsersAdd extends javax.swing.JFrame {
     private javax.swing.JTextField birthDateInput;
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField cpfInput;
-    private javax.swing.JButton createButton;
     private javax.swing.JTextField emailInput;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -286,5 +294,6 @@ public class UsersAdd extends javax.swing.JFrame {
     private javax.swing.JTextField passwordInput;
     private javax.swing.JFormattedTextField phoneInput;
     private javax.swing.JFormattedTextField rgInput;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }

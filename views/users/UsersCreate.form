@@ -48,7 +48,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="cancelButton" min="-2" pref="84" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="createButton" min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="saveButton" min="-2" pref="101" max="-2" attributes="0"/>
                       </Group>
                       <Component id="passwordInput" max="32767" attributes="0"/>
                   </Group>
@@ -103,7 +103,7 @@
               <Component id="passwordInput" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="createButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="saveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -123,18 +123,21 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nameInput">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameInputActionPerformed"/>
-      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="nameInput.setText(user.getName());"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="passwordInput">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="passwordInput.setText(user.getPassword());"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="createButton">
+    <Component class="javax.swing.JButton" name="saveButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cancelButton">
@@ -151,6 +154,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="cpfInput">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="cpfInput.setText(user.getCpf());"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -163,6 +169,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="birthDateInput">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try {&#xa;    birthDateInput.setText(new SimpleDateFormat(&quot;dd/MM/YYYY&quot;).format(user.getBirth_date()));&#xa;} catch(NullPointerException e){&#xa;&#xa;}"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -173,16 +182,22 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="rgInput.setText(user.getRg());"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="phoneInput">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="phoneInput.setText(user.getPhone());"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="emailInput">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailInputActionPerformed"/>
-      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="emailInput.setText(user.getEmail());"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>

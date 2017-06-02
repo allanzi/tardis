@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views;
+package views.products;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,6 +11,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import mocks.ProductsMock;
 import models.Product;
+import views.SalesView;
 
 /**
  *
@@ -138,6 +139,11 @@ public class ProductsViews extends javax.swing.JFrame {
         }
 
         addProductButton.setText("Adicionar produto");
+        addProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -206,6 +212,10 @@ public class ProductsViews extends javax.swing.JFrame {
         ProductsViews products = new ProductsViews();
         products.run();
     }//GEN-LAST:event_productsLinkMouseClicked
+
+    private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
+        
+    }//GEN-LAST:event_addProductButtonActionPerformed
 
     /**
      * @param args the command line arguments

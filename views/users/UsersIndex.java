@@ -5,6 +5,7 @@
  */
 package views.users;
 
+import Services.UserService;
 import views.products.ProductsViews;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -267,7 +268,25 @@ public class UsersIndex extends javax.swing.JFrame {
     }//GEN-LAST:event_editUserButtonMouseClicked
 
     private void removerUserButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removerUserButtonMouseClicked
-        // TODO add your handling code here:
+        if (usersTable.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para removê-la");
+            return;
+        }
+        
+        try {
+            int id = (int) usersTable.getModel().getValueAt(usersTable.getSelectedRow(), 0);
+            User user = UserMock.find(id);
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente remover o(a) usuario(a): " + user.getName() + ".");
+            
+            if (confirm == JOptionPane.YES_OPTION) {
+                UserService service = new UserService();
+                service.delete(id);
+                this.dispose();
+                this.run();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(UsersIndex.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_removerUserButtonMouseClicked
 
     /**

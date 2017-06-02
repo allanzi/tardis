@@ -5,8 +5,6 @@
  */
 package views;
 
-import views.products.ProductsViews;
-import views.users.UsersIndex;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;

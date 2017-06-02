@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.users;
+package views;
 
 import Services.UserService;
-import views.products.ProductsViews;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
